@@ -1,0 +1,7 @@
+- Criar tarefas
+- Ver tarefas
+- Editar tarefas
+- Excluir tarefas
+- Favoritar tarefas
+- Definir A Cor de tarefas
+

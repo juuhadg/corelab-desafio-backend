@@ -2,7 +2,7 @@
   "name": "corelab-desafio-backend",
   "version": "1.0.0",
   "description": "Backend do desafio do aplicativo de tarefas Corelab",
-  "main": "index.ts",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^8.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.5"
