@@ -1,4 +1,5 @@
 const TarefaModel = require("../models/tarefaModel")
+
 const obterTarefas = async (req,res) => {
     try {
         const tarefas = await TarefaModel.find()
@@ -55,6 +56,61 @@ const adicionarTarefa = async (req,res)=> {
     
  }
 
+ const deletarTarefa = async (req,res) => {
+    try {
+        const tarefaId = req.query.id
+        await TarefaModel.findByIdAndDelete(tarefaId)
+        return res.status(200).send("Tarefa deletada com sucesso.")
+
+    } catch (error) {
+        return res.status(500).send("Ocorreu um erro ao deletar sua tarefa.")
+    }
+ }
+
+const alterarFavorito = async (req,res) => {
+    try {
+        const tarefaId = req.query.id
+        const tarefa = await TarefaModel.findById(tarefaId)
+        if (!tarefa) return res.status(404).send("Tarefa a favoritar não encontrada.")
+
+        tarefa.favorito = !tarefa.favorito //alternar favorito para true ou false, um toggle
+
+        const stringResposta = tarefa.favorito ? "Tarefa Favoritada com Sucesso." : "Tarefa Desfavoritada com Sucesso."
+        
+
+        await TarefaModel.findByIdAndUpdate({ _id: tarefa._id}, tarefa)
+        return res.status(200).send(stringResposta)
+
+
+
+    } catch(error) {
+        return res.status(500).send("Ocorreu um erro ao Favoritar sua tarefa.")
+    }
+}
+
+const alterarCor = async (req, res) => {
+    try {
+        const tarefaId = req.query.id
+        const tarefa = await TarefaModel.findById(tarefaId)
+
+        if (!tarefa) return res.status(404).send("Tarefa a alterar cor não encontrada.")
+
+        const cor = req.body.cor
+
+        if(!cor) return res.status(400).sendo("Favor informar a cor a ser alterada.")
+
+        tarefa.cor = cor
+
+        return res.status(200).send("Cor alterada com sucesso.")
+
+
+    } catch(error) {
+
+    }
+
+}
+
+
 module.exports = {
-    obterTarefas,adicionarTarefa,editarTarefa
+    obterTarefas,adicionarTarefa,editarTarefa,deletarTarefa,alterarFavorito
 }
