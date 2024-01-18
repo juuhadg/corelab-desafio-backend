@@ -105,12 +105,12 @@ const alterarCor = async (req, res) => {
 
 
     } catch(error) {
-
+        return res.status(500).send("Ocorreu um erro ao alterar a cor da tarefa.")
     }
 
 }
 
 
 module.exports = {
-    obterTarefas,adicionarTarefa,editarTarefa,deletarTarefa,alterarFavorito
+    obterTarefas,adicionarTarefa,editarTarefa,deletarTarefa,alterarFavorito,alterarCor
 }
