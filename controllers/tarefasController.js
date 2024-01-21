@@ -101,6 +101,8 @@ const alterarCor = async (req, res) => {
 
         tarefa.cor = cor
 
+        await TarefaModel.findByIdAndUpdate({ _id: tarefa._id}, tarefa)
+
         return res.status(200).send("Cor alterada com sucesso.")
 
 
